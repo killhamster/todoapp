@@ -12,8 +12,20 @@
 
 <body>
     <div style="margin-top: 50px;" class="ui container">
-        {% block content %} {% endblock %}
+        <div class="container mt-3">
+            {% for message in get_flashed_messages() %}
+            <div class="ui red error message">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% block content %} {% endblock %}
+        </div>
     </div>
-</body>
+    <script>
+        $('.message .close').on('click', function() {
+            $(this).closest('.message').transition('slide');
+        });
+    </script>
+    </body>
 
 </html>
